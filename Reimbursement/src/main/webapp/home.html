@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="jumbotron">
+        <h2 id="welcome">You are logged in!</h2>
+        <script>
+            let welcome = document.getElementById('welcome')
+            let userString = sessionStorage.getItem('currentUser')
+            if(userString === null)
+            {
+                window.location = "http://localhost:9001/Reimbursment/login"
+            }
+            else{
+                console.log(userString)
+				let currentUser = JSON.parse(userString)
+				console.log(currentUser)
+				if(currentUser != null)
+				{
+					welcome.innerHTML = "Welcome " + currentUser.firstName + " " + currentUser.lastName
+				}
+			}
+            
+        </script>
+        <h3>What would you like to do?</h3>
+        <form method="GET" onSubmit="getReimbursePage()" >
+            <input type="submit" value = "Submit a reimbursement form." >
+        </form>
+        <br>
+        <form method="GET" action="view/current" >
+            <input type="submit" value = "View your reimbursement forms" >
+        </form>
+        <div id="specForm">
+
+        </div>
+        <br>
+        <form method="post" action="logout">
+            <input type="submit" value="Logout">
+        </form>
+        <script src="js/main.js"></script>
+      
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class= "container-lg">
+  <div class="centered">
+   
+<h1 style="text-align: center;">Employee Reimbursement Portal</h1>
+<form class="f1" name="loginForm" onSubmit="sendLogin(event.preventDefault())">
+  <h3>Please log in</h3>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="username">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password">
+    </div>
+  </div>
+  <div id="warningText"></div>
+  <div class="form-group row">
+    <div class="col-sm-2">Stay signed in?</div>
+    <div class="col-sm-10">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="signIn">
+        
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </div>
+</form>
+</div>
+</div>
+
+<script src="js/login.js"></script>
+
+</body>
+</html>

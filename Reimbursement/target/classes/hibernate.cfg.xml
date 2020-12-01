@@ -1,0 +1,41 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	<property name = "hibernate.connection.username">postgres</property>
+	<property name = "hibernate.connection.password">N00dle123</property>
+	<property name = "hibernate.connection.url">jdbc:postgresql://database-3.cirbao8r0vqh.us-east-1.rds.amazonaws.com:5432/reimburse</property>
+	
+	<property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
+	<property name = "hibernate.connection.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+	<property name = "hibernate.show_sql">false</property>
+	<property name = "hibernate.format_sql">false</property>
+	
+	<property name = "hibernate.connection.pool_size">10</property>
+	
+	<!-- hbm2ddl.auto is a hibernate property that exports schema DDL to the database -->
+	<property name = "hibernate.hbm2ddl.auto">validate</property>
+	<mapping class ="model.User"/>
+	<mapping class ="model.Reimbursement"/>
+	<mapping class ="model.Role"/>
+	<mapping class ="model.ReimbursementType"/>
+	<mapping class ="model.ReimbursementStatus"/>
+	
+	
+	</session-factory>
+</hibernate-configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
