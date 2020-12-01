@@ -37,7 +37,7 @@ public class ViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession ses = req.getSession();
 		User u = (User)ses.getAttribute("user");
-		System.out.println(req.getRequestURI());
+		System.out.println("URI: " +req.getRequestURI());
 		switch (req.getRequestURI()) {
 		case "/Reimbursement/view/all":
 			if(u.getUserRole().getId() ==2)
@@ -56,6 +56,19 @@ public class ViewServlet extends HttpServlet {
 				ReimbursementController.viewUser(req, resp);
 			}			
 			break;
+		case"/Reimbursement/view/approve":
+			if(u.getUserRole().getId()==2)
+			{
+				ReimbursementController.approveReim(req, resp);
+			}
+			break;
+		case"/Reimbursement/view/deny":
+			if(u.getUserRole().getId()==2)
+			{
+				ReimbursementController.denyReim(req, resp);
+			}
+			break;
+			
 		default:
 			break;
 		}

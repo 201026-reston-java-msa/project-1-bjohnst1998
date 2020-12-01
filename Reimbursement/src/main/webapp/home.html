@@ -15,7 +15,7 @@
             let userString = sessionStorage.getItem('currentUser')
             if(userString === null)
             {
-                window.location = "http://localhost:9001/Reimbursment/login"
+                window.location = "http://localhost:9001/Reimbursement/index.html"
             }
             else{
                 console.log(userString)
@@ -40,11 +40,12 @@
 
         </div>
         <br>
-        <form method="post" action="logout">
+        <form method="post" action="logout" onSubmit="logout(event.preventDefault())">
             <input type="submit" value="Logout">
         </form>
-        <script src="js/main.js"></script>
       
     </div>
+    <script src="js/main.js"></script>
+
 </body>
 </html>

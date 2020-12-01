@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.ws.http.HTTPException;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Dao.ReimbursementDao;
@@ -17,12 +19,14 @@ import Dao.ReimbursementStatusDao;
 import Dao.ReimbursementTypeDao;
 import model.Reimbursement;
 import model.ReimbursementDTO;
+import model.ReimbursementStatus;
 import model.ReimbursementTemplate;
 import model.User;
 import model.UseridTemplate;
 import service.UserService;
 
 public class ReimbursementController {
+	private static Logger log = Logger.getLogger(ReimbursementController.class);
 	private static ObjectMapper mapper = new ObjectMapper();
 	private static UserService uServ = new UserService();
 	private static ReimbursementStatusDao statusDao = new ReimbursementStatusDao();
@@ -73,6 +77,7 @@ public class ReimbursementController {
 	 for(Reimbursement r : l)
 	 {
 		 ReimbursementDTO rd = reimburseDao.convertToDTO(r);
+		 
 		 dtos.add(rd);
 	 }
 	 resp.setContentType("application/json");
@@ -127,4 +132,71 @@ public class ReimbursementController {
 		 
 		 resp.getWriter().println(mapper.writeValueAsString(dtos));
 	}
+	
+	public static void approveReim(HttpServletRequest req, HttpServletResponse resp) throws IOException, HTTPException
+	{
+		log.info("Approved!");
+		BufferedReader r = req.getReader();
+		StringBuilder s = new StringBuilder();
+		//Transfor reader data to SB
+		String line = r.readLine();
+		while(line!=null)
+		{
+			s.append(line);
+			line = r.readLine();
+		}
+		
+		String body = s.toString();
+		System.out.println(body);
+		
+		UseridTemplate uid = mapper.readValue(body, UseridTemplate.class);
+		Reimbursement rim= reimburseDao.findById(uid.getUserId());
+		rim.setStatus(new ReimbursementStatus(2,"Approved"));
+		if(reimburseDao.update(rim))
+		{
+			resp.setContentType("application/json");
+			resp.setStatus(200);
+			resp.getWriter().println("Success!");
+		}
+		else {
+			resp.setContentType("application/json");
+			resp.setStatus(204);
+			resp.getWriter().println("Failed");
+		}
+	}
+	
+	public static void denyReim(HttpServletRequest req, HttpServletResponse resp) throws IOException, HTTPException
+	{
+		log.info("Denied!");
+
+		BufferedReader r = req.getReader();
+		StringBuilder s = new StringBuilder();
+		//Transfor reader data to SB
+		String line = r.readLine();
+		while(line!=null)
+		{
+			s.append(line);
+			line = r.readLine();
+		}
+		
+		String body = s.toString();
+		System.out.println(body);
+		
+		UseridTemplate uid = mapper.readValue(body, UseridTemplate.class);
+		Reimbursement rim= reimburseDao.findById(uid.getUserId());
+		
+		rim.setStatus(new ReimbursementStatus(3,"Denied"));
+		if(reimburseDao.update(rim))
+		{
+			resp.setContentType("application/json");
+			resp.setStatus(200);
+			resp.getWriter().println("Success!");
+		}
+		else {
+			resp.setContentType("application/json");
+			resp.setStatus(204);
+			resp.getWriter().println("Failed");
+		}
+	}
+	
 }

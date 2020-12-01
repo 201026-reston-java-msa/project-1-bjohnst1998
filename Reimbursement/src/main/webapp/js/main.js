@@ -39,4 +39,12 @@ function getViewPageUser()
     let viewUser = document.getElementById('userID').value;
     sessionStorage.setItem('viewUser', viewUser)
 }
+
+function logout()
+{
+    sessionStorage.clear();
+    window.location.href = "http://localhost:9001/Reimbursement/"
+}
+
+
 loadOptions();

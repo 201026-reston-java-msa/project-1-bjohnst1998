@@ -8,6 +8,12 @@
 
 </head>
 <body>
+    <script> 
+    let userString = sessionStorage.getItem('currentUser')
+        if(userString === null)
+        {
+            window.location = "http://localhost:9001/Reimbursement/index.html"
+        }</script>
     <div class="jumbotron">
         <h1>Reimbursement Form</h1>
     </div>
