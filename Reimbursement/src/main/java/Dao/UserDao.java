@@ -2,6 +2,7 @@ package Dao;
 
 import java.util.List;
 
+import javax.persistence.FetchType;
 import javax.persistence.RollbackException;
 
 import org.apache.log4j.Logger;

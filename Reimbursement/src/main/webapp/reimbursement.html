@@ -12,12 +12,12 @@
         <h1>Reimbursement Form</h1>
     </div>
   
-    <form class="form-check" method="POST" action="reimburse">
+    <form class="form-check" id="reimbursementForm" onSubmit="submitReimbursement(event.preventDefault())">
         <table class="table table-borderless" style="margin-left: 30%;">           
             <tbody>
               <tr>
                 <td class="my-1 mr-2" style="width: 5%;">Type</td>
-                <td><select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="width: 15%;">
+                <td><select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name= "type" required style="width: 15%;">
                     <option selected>Choose...</option>
                     <option value="1">Lodging</option>
                     <option value="2">Travel</option>
@@ -28,15 +28,16 @@
               </tr>
               <tr>
                 <td>Amount</td>
-                <td> <input type="number" name="amount" id="fill-Form" placeholder="0.00" ></td>
+                <td> <input type="number"step=".01" name="amount" id="amount" required placeholder="0.00" ></td>
               </tr>
               <tr>
                   <td>Description</td>
                   <td>
-                      <textarea name="description" id="fill-Form" placeholder="Description Here" rows=5 style="width: 15%;"></textarea>
+                      <textarea name="description" id="description" placeholder="Description Here" rows=5 style="width: 15%;"></textarea>
                     </td>
                 </tr>
                 <tr>
+                   
                     <td>       
                          <button type="submit" class="btn btn-primary my-1">Submit</button>
                     </td>
@@ -47,5 +48,8 @@
       
       <br>
       </form>
+      <form onsubmit="goBack(event.preventDefault())"> <button type="submit" class="btn btn-primary my-1">Go Back</button>
+      </form>
+      <script src="js/reimburse.js"></script>
 </body>
 </html>

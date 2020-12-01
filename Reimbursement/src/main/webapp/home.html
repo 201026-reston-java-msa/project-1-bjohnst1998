@@ -29,11 +29,11 @@
             
         </script>
         <h3>What would you like to do?</h3>
-        <form method="GET" onSubmit="getReimbursePage()" >
+        <form onSubmit="getReimbursePage(event.preventDefault())" >
             <input type="submit" value = "Submit a reimbursement form." >
         </form>
         <br>
-        <form method="GET" action="view/current" >
+        <form onsubmit="getViewPageCurrent(event.preventDefault())" >
             <input type="submit" value = "View your reimbursement forms" >
         </form>
         <div id="specForm">
@@ -45,7 +45,6 @@
         </form>
         <script src="js/main.js"></script>
       
-
     </div>
 </body>
 </html>

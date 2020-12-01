@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class ReimbursementServlet
  */
 public class ReimbursementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       Logger log = Logger.getLogger(ReimbursementServlet.class);
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -20,18 +22,17 @@ public class ReimbursementServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(req.getSession().getAttribute("user") != null)
+		{
+			if(ReimbursementController.submitReimbursement(req, resp))
+			{
+				log.info("Reimbursement submitted!");
+				resp.setContentType("application/json");
+				resp.setStatus(200);
+				resp.getWriter().println("Completed!");
+			}
+		}
 		
 	}
 

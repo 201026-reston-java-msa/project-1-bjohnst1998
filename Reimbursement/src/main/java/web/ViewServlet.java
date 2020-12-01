@@ -5,6 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.User;
 
 /**
  * Servlet implementation class ViewServlet
@@ -23,17 +26,39 @@ public class ViewServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession ses = req.getSession();
+		User u = (User)ses.getAttribute("user");
+		System.out.println(req.getRequestURI());
+		switch (req.getRequestURI()) {
+		case "/Reimbursement/view/all":
+			if(u.getUserRole().getId() ==2)
+			{
+				ReimbursementController.viewAll(req, resp);
+			}
+
+			break;
+		case "/Reimbursement/view/current":
+		ReimbursementController.viewCurrent(req, resp);
+		break;
+		
+		case "/Reimbursement/view/user":
+			if(u.getUserRole().getId() ==2)
+			{
+				ReimbursementController.viewUser(req, resp);
+			}			
+			break;
+		default:
+			break;
+		}
 	}
 
 }

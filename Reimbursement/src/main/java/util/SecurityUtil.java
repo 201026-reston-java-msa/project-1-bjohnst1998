@@ -55,7 +55,8 @@ public class SecurityUtil {
 		String decrypted = null;
 		try {
 			cipher.init(Cipher.DECRYPT_MODE, key);
-			byte[] encryptedTxt = Base64.decodeBase64(s);
+		
+			byte[] encryptedTxt = Base64.decodeBase64(s.getBytes(UNICODE_FORMAT));
 			byte[] plainText = cipher.doFinal(encryptedTxt);
 			decrypted = new String(plainText);
 		}catch (Exception e) {

@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import model.Reimbursement;
+import model.ReimbursementDTO;
 import model.User;
 import util.HibernateUtil;
 
@@ -21,7 +22,7 @@ public class ReimbursementDao implements DaoTemplate<Reimbursement> {
 	@Override
 	public List<Reimbursement> findAll() {
 		Session ses = HibernateUtil.getSession();
-		List<Reimbursement> r = ses.createQuery("from reimbursements", Reimbursement.class).list();
+		List<Reimbursement> r = ses.createQuery("from Reimbursement", Reimbursement.class).list();
 		log.info("Found Users: " + r.size());
 		return r;
 	}
@@ -70,4 +71,26 @@ public class ReimbursementDao implements DaoTemplate<Reimbursement> {
 	public Reimbursement findByName(String name) {
 		return null;
 	}
+	
+	public ReimbursementDTO convertToDTO(Reimbursement r)
+	{
+		String resolverName = null;
+		if(r.getResolver() ==null)
+		{
+			resolverName = "";
+		}
+		else {
+			resolverName =new String(r.getResolver().getFirstName()+" " + r.getResolver().getLastName());
+		}
+		return new ReimbursementDTO(r.getId(), r.getAmount(), r.getDescription(), new String(r.getUser().getFirstName()+" "+r.getUser().getLastName())
+				, r.getDateSubmitted().toString(), resolverName, r.getStatus().getStatus(), r.getType().getType());
+	}
+	
+	public List<Reimbursement> findByUserId(int id)
+	{
+		Session ses = HibernateUtil.getSession();
+		List<Reimbursement> r = ses.createQuery("from Reimbursement where user = " +id, Reimbursement.class).list();
+		return r;
+	}
+	
 }

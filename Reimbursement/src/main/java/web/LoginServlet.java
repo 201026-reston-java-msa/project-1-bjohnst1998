@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("signIn", true);
 			}
 			
-			session.setAttribute("user", u.getUsername());
+			session.setAttribute("user", u);
 			
 			PrintWriter writer = resp.getWriter();
 			resp.setContentType("application/json");
