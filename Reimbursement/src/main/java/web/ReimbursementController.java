@@ -2,6 +2,7 @@ package web;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -160,6 +161,7 @@ public class ReimbursementController {
 		UseridTemplate uid = mapper.readValue(body, UseridTemplate.class);
 		Reimbursement rim= reimburseDao.findById(uid.getUserId());
 		rim.setStatus(new ReimbursementStatus(2,"Approved"));
+		rim.setDateResolved(LocalDateTime.now());
 		rim.setResolver(currentU);
 		if(reimburseDao.update(rim))
 		{
@@ -198,6 +200,8 @@ public class ReimbursementController {
 		
 		rim.setStatus(new ReimbursementStatus(3,"Denied"));
 		rim.setResolver(currentU);
+		rim.setDateResolved(LocalDateTime.now());
+
 		if(reimburseDao.update(rim))
 		{
 			resp.setContentType("application/json");
