@@ -46,4 +46,13 @@ function goBack()
 {
     window.location = "http://localhost:9001/Reimbursement/home.html";
 }
-
+$(document).on('keyup', 'input[name=quantity]', function() {
+    var _this = $(this);
+    var min = parseInt(_this.attr('min')) || 1; // if min attribute is not defined, 1 is default
+    var max = parseInt(_this.attr('max')) || 100; // if max attribute is not defined, 100 is default
+    var val = parseInt(_this.val()) || (min - 1); // if input char is not a number the value will be (min - 1) so first condition will be true
+    if (val < min)
+      _this.val(min);
+    if (val > max)
+      _this.val(max);
+  });
