@@ -4,12 +4,10 @@ function sendLogin()
 let loginForm = document.loginForm;
 let username = document.getElementById("username").value;
 let password = document.getElementById("password").value;
-let signIn = document.getElementById("signIn").value;
 console.log("Username: " +username);
 let loginTemplate = {
     username: username,
-    password: password,
-    signIn: signIn
+    password: password
 }
 
 //AJAX

@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.LoginTemplate;
+import model.Role;
 import model.User;
 import model.UserDTO;
 import service.UserService;
@@ -65,10 +66,7 @@ public class LoginServlet extends HttpServlet {
 		if(u!=null)
 		{
 			log.info(username +" has logged in successfully");
-			if(l.getSignIn().equals("checked"))
-			{
-				session.setAttribute("signIn", true);
-			}
+			
 			
 			session.setAttribute("user", u);
 			
@@ -82,6 +80,8 @@ public class LoginServlet extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.setStatus(204);
 		}
+		
+		
 		
 	}
 

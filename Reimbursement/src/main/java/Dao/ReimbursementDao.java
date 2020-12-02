@@ -22,6 +22,8 @@ public class ReimbursementDao implements DaoTemplate<Reimbursement> {
 	@Override
 	public List<Reimbursement> findAll() {
 		Session ses = HibernateUtil.getSession();
+		ses.clear();
+
 		List<Reimbursement> r = ses.createQuery("from Reimbursement", Reimbursement.class).list();
 		log.info("Found Users: " + r.size());
 		return r;
@@ -30,6 +32,8 @@ public class ReimbursementDao implements DaoTemplate<Reimbursement> {
 	@Override
 	public boolean insert(Reimbursement r) {
 		Session ses = HibernateUtil.getSession();
+		ses.clear();
+
 		Transaction tx = ses.beginTransaction();
 		try {
 			ses.save(r);
@@ -46,6 +50,7 @@ public class ReimbursementDao implements DaoTemplate<Reimbursement> {
 	@Override
 	public boolean update(Reimbursement r) {
 		Session ses = HibernateUtil.getSession();
+		ses.clear();
 		Transaction tx = ses.beginTransaction();
 
 		try {
@@ -63,6 +68,7 @@ public class ReimbursementDao implements DaoTemplate<Reimbursement> {
 	@Override
 	public Reimbursement findById(int id) {
 		Session ses = HibernateUtil.getSession();
+		ses.clear();
 		Reimbursement r = ses.get(Reimbursement.class, id);
 		return r;
 	}

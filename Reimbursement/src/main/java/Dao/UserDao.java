@@ -22,7 +22,7 @@ public class UserDao implements DaoTemplate<User> {
 	@Override
 	public List<User> findAll() {
 		Session ses = HibernateUtil.getSession();
-		List<User> users = ses.createQuery("from users", User.class).list();
+		List<User> users = ses.createQuery("from User", User.class).list();
 		log.info("Found Users: " + users.size());
 		return users;
 	}

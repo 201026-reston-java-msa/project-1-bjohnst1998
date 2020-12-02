@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.jdt.internal.compiler.ast.BreakStatement;
+
 import model.User;
 
 /**
@@ -68,7 +70,18 @@ public class ViewServlet extends HttpServlet {
 				ReimbursementController.denyReim(req, resp);
 			}
 			break;
-			
+		case "/Reimbursement/view/update":
+			ReimbursementController.updateProfile(req,resp);
+			break;
+		case "/Reimbursement/view/allEmp":
+			ReimbursementController.viewAllEmployees(req, resp);
+			break;
+		case "/Reimbursement/view/currentEmp":
+			ReimbursementController.viewCurrentEmployee(req, resp);
+			break;
+		case "/Reimbursement/view/userEmp":
+			ReimbursementController.viewUserEmployee(req, resp);
+			break;
 		default:
 			break;
 		}

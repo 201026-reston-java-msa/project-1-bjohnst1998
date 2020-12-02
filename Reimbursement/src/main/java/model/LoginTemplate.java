@@ -5,16 +5,15 @@ import java.io.Serializable;
 public class LoginTemplate implements Serializable {
 	private String username;
 	private String password;
-	private String signIn;
 	public LoginTemplate() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public LoginTemplate(String username, String password,String signIn) {
+	public LoginTemplate(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.signIn = signIn;
+	
 	}
 	public String getUsername() {
 		return username;
@@ -28,18 +27,12 @@ public class LoginTemplate implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getSignIn() {
-		return signIn;
-	}
-	public void setSignIn(String signIn) {
-		this.signIn = signIn;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((signIn == null) ? 0 : signIn.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -57,11 +50,7 @@ public class LoginTemplate implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (signIn == null) {
-			if (other.signIn != null)
-				return false;
-		} else if (!signIn.equals(other.signIn))
-			return false;
+		
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -71,7 +60,7 @@ public class LoginTemplate implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "LoginTemplate [username=" + username + ", password=" + password + ", signIn=" + signIn + "]";
+		return "LoginTemplate [username=" + username + ", password=" + password + "]";
 	}
 	
 }

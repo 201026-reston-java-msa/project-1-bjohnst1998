@@ -22,6 +22,11 @@ public class UserDTO implements Serializable {
 		this.email = email;
 		this.userRole = userRole;
 	}
+	
+	public UserDTO()
+	{
+		super();
+	}
 	public int getId() {
 		return id;
 	}

@@ -7,8 +7,8 @@ function loadOptions()
     if(currentU.userRole == 'FinanceManager')
     {
         console.log('giving admin option')
-        adminForm.innerHTML = "<br><h3>Finance Manager Tools</h3> <form onSubmit='getViewPageAll(event.preventDefault())'><input type='submit' value='View All Reimbursements'></form> " +
-        "<form onSubmit='getViewPageUser(event.preventDefault())'><input type ='number' id='userID' placeholder='Enter User ID'><br><input type='submit' value='View Reimbursements'></form>"
+        adminForm.innerHTML = "<br><h3>Manager Tools</h3> <form onSubmit='getViewPageAll(event.preventDefault())'><input type='submit' value='View All Reimbursements'></form> " +
+        "<form onSubmit='getViewPageUser(event.preventDefault())'><input type ='number' id='userID' placeholder='Enter User ID'><br><input type='submit' value='View Reimbursements'></form><form onSubmit='viewAllEmployees(event.preventDefault())'><input type='submit' value = 'View all employees'></form><form onSubmit='viewEmployee(event.preventDefault())'><input type ='number' id='userID2' placeholder='Enter User ID'><br><input type='submit' value = 'View employee'></form>"
 
     }
 
@@ -40,6 +40,26 @@ function getViewPageUser()
     sessionStorage.setItem('viewUser', viewUser)
 }
 
+function viewAllEmployees()
+{
+    window.location.href = "http://localhost:9001/Reimbursement/employee.html";
+    sessionStorage.setItem('viewType', 'all');
+}
+
+
+function viewEmployee()
+{
+    window.location.href = "http://localhost:9001/Reimbursement/employee.html";
+    sessionStorage.setItem('viewType', 'user');
+    let viewUser = document.getElementById('userID2').value;
+    sessionStorage.setItem('viewUser', viewUser)
+}
+
+function viewCurrentEmployee()
+{
+    window.location.href = "http://localhost:9001/Reimbursement/employee.html";
+    sessionStorage.setItem('viewType', 'current');
+}
 function logout()
 {
     sessionStorage.clear();
